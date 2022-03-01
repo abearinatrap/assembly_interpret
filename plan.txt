@@ -1,0 +1,3 @@
+Read assembly instructions + have counter of cycles/intstructions read 
+
+and keep track of all Registers and outside memory locations
