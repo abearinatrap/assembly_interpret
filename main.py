@@ -18,13 +18,13 @@ class CPU():
 
         self.memory = bitarray(1000000000)
 
-
-
 if __name__=="__main__":
 
     with open("data.json","r") as info_file:
         info=json.load(info_file)
-
-    
+    WRITE_LOC="C:/dev2/ghidra_data.json"
+    with open(WRITE_LOC,"r") as instruction_data:
+        pass
+    print(info)
     cpu=CPU()
     here=input()    
