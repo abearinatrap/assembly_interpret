@@ -2,18 +2,23 @@
 from binascii import hexlify
 from gzip import WRITE
 import json
-
+from ast import literal_eval
 listing = currentProgram.getListing()
-main_func = getGlobalFunctions("main")[0] # assume there's only 1 function named 'main'
+main_func = getGlobalFunctions("init_3")[0] # assume there's only 1 function named 'main'
 addrSet = main_func.getBody()
-codeUnits = listing.getCodeUnits(addrSet, True) # true means 'forward'
+# true means 'forward'
 
-
+a=addrSet.getMinAddress()
+start_m=a.getAddress("08008000")
+end_m=a.getAddress("081d67f4")
+addrSet.delete(addrSet.getFirstRange())
+addrSet.delete(addrSet.getFirstRange())
+addrSet.add(start_m,end_m)
+codeUnits = listing.getCodeUnits(addrSet, True) 
 
 for codeUnit in codeUnits:
-    #codeUnit.toString() is the command
-    #print("0x{} : {:16} {}".format(codeUnit.getAddress(), hexlify(codeUnit.getBytes()), codeUnit.toString()))
-    instruction_data[codeUnit.getAddress()]=codeUnit.toString()
+    instruction_data[literal_eval("0x"+"{}".format(codeUnit.getAddress()))]=[codeUnit.toString(),hexlify(codeUnit.getBytes())]
+        # can also get bytes of instruction with    hexlify(codeUnit.getBytes())
 
 WRITE_LOC="C:/dev2/ghidra_data.json"
 
