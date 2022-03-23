@@ -5,5 +5,5 @@ Emulation of ARM Cortex M7 used in Pixhawk 4
 ## TODO
 - [X] Fix fetching of instructions
 - [ ] Write logic for most instructions: LOL
-- [ ] GUI
+- [X] GUI
 - [ ] Save state on exit + whenever user wants

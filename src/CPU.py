@@ -5,9 +5,11 @@ from .register import Register
 class CPU():
     def __init__(self):
         '''Emulator of 32-bit ARM Cortex M7 used in Pixhawk 4'''
-        self.registers=[Register() for i in range(12)]
-        self.sp=Register()
-        self.lr=Register()
+        self.registers=[Register() for i in range(16)]
+        self.sp=self.registers[13]
+        self.lr=self.registers[14]
+        self.pc=self.registers[15]
+
         self.psr=Register()
         self.xpsr=Register() #flags
         self.stack=[]
@@ -45,4 +47,7 @@ class CPU():
         elif mode==4:
             # literal
             self.registers[d]=s
+    
+    def inc(self,*args):
+        d=args
     
